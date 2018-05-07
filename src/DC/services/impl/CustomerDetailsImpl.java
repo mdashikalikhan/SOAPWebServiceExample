@@ -11,12 +11,10 @@ import java.util.Map;
 import DC.services.model.CustomerDeatilsRequest;
 import DC.services.model.CustomerDetailResponse;
 
-public class CustomerDetailsImpl {
-
-	private Map<String, String> mapVariables;
+public class CustomerDetailsImpl extends DCServicesImpl {
 
 	public CustomerDetailsImpl() {
-		mapVariables = new HashMap<String, String>();
+		super();
 	}
 
 	public CustomerDetailResponse getCustomerDetails(CustomerDeatilsRequest customerDetailRequest) {
@@ -47,7 +45,13 @@ public class CustomerDetailsImpl {
 		}
 		initializeMap(output);
 
-		Field[] fields = CustomerDetailResponse.class.getDeclaredFields();
+		setFieldValues("DC.services.model.CustomerDetailResponse");
+		
+		if(anObject!=null) {
+			customerDetailResponse = (CustomerDetailResponse) anObject;
+		}
+		
+		/*Field[] fields = CustomerDetailResponse.class.getDeclaredFields();
 		for (Field field : fields) {
 			if (field.getName().equals("V_FIRST_NAME") && mapVariables.containsKey(field.getName())) {
 				customerDetailResponse.setV_FIRST_NAME(mapVariables.get(field.getName()));
@@ -144,26 +148,9 @@ public class CustomerDetailsImpl {
 			} else if (field.getName().equals("ERROR") && mapVariables.containsKey(field.getName())) {
 				customerDetailResponse.setERROR(mapVariables.get(field.getName()));
 			}
-		}
+		}*/
 		return customerDetailResponse;
 	}
 
-	private void initializeMap(String output) {
-		String[] splitOutput = output.split("\\|");
-
-		for (String variable : splitOutput) {
-			String[] tmpArr = variable.split("=");
-			if (tmpArr.length >= 2) {
-				setMapVariable(tmpArr[0], tmpArr[1]);
-			}
-		}
-	}
-
-	private void setMapVariable(String key, String val) {
-		if (key != null && val != null && !key.isEmpty() && !val.isEmpty()) {
-			if (!mapVariables.containsKey(key)) {
-				mapVariables.put(key, val);
-			}
-		}
-	}
+	
 }
