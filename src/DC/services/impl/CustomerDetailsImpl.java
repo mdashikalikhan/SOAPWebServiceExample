@@ -1,12 +1,8 @@
 package DC.services.impl;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
 
 import DC.services.model.CustomerDeatilsRequest;
 import DC.services.model.CustomerDetailResponse;
