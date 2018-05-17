@@ -1,6 +1,5 @@
 package DC.services.interfaces;
 
-import javax.interceptor.Interceptors;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
